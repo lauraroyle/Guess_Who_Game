@@ -1,0 +1,2 @@
+module PlayerCharacteristicsHelper
+end
