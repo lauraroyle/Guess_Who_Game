@@ -1,2 +1,0 @@
-class PlayerCharacteristicsController < ApplicationController
-end
