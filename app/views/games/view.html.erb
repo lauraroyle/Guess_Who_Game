@@ -1,0 +1,8 @@
+<%= form_tag game_path(@game.id) %>
+  <select name="question">
+    <% Questions.sampled_questions.each do |q| %>
+      <option value=<%= q.id %>> <%= q.question %> </option>
+    <% end %>
+  </select>
+  <%= submit_tag 'Submit' %>
+<% end %>
