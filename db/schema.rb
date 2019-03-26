@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190326103901) do
+ActiveRecord::Schema.define(version: 20190326134404) do
 
   create_table "eye_colours", force: :cascade do |t|
     t.string "colour"
@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(version: 20190326103901) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "occupations", force: :cascade do |t|
+    t.string "occupation"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.integer "hair_colour_id"
@@ -51,7 +55,7 @@ ActiveRecord::Schema.define(version: 20190326103901) do
     t.integer "top_score"
     t.string "gender"
     t.string "wears_hat"
-    t.string "occupation"
+    t.integer "occupation_id"
   end
 
   create_table "questions", force: :cascade do |t|

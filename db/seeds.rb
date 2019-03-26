@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-
 #hair_colours
 hair = [
   { colour: 'Brown' }, #1
@@ -22,6 +18,20 @@ eyes = [
   { colour: 'Hazel' } #5
 ]
 EyeColour.create(eyes)
+
+#occupations
+occupations = [
+{ occupation: 'Actor/Actress' }, #1
+{ occupation: 'Politician' }, #2
+{ occupation: 'Athlete' }, #3
+{ occupation: 'Singer/Musician' }, #4
+{ occupation: 'Cartoon Character' }, #5
+{ occupation: 'Flatiron Student' }, #6
+{ occupation: 'Flatiron Staff' }, #7
+{ occupation: 'Scientist' } #8
+]
+
+Occupation.create(occupations)
 
 #questions
 questions = [
@@ -44,9 +54,7 @@ questions = [
   { question: "Does the character have blue hair?" },
   { question: "Does the character wear a hat?" },
   { question: "Is the character a student at Flatiron?" },
-  { question: "Is the character a teacher at Flatiron?" },
-  { question: "Is the character a TCF at Flatiron?" },
-  { question: "Is the character a student at Flatiron?" },
+  { question: "Is the character staff at Flatiron?" },
   { question: "Is the character an actor/actress?" },
   { question: "Is the character a singer/musician?" },
   { question: "Is the character a political figure?" },
@@ -59,41 +67,40 @@ Question.create(questions)
 
 #base game characters
 characters = [
-  { name: "Freddie Mercury", hair_colour_id: 2, eye_colour_id: 2, glasses: "no", facial_hair: "yes", alive: "no", gender: "male", wears_hat: "no", occupation: "Singer/Musician" },
-  { name: "Anne Hathaway", hair_colour_id: 1, eye_colour_id: 3, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Frank Sinatra", hair_colour_id: 1, eye_colour_id: 1, glasses: "no", facial_hair: "no", alive: "no", gender: "male", wears_hat: "yes", occupation: "Singer/Musician" },
-  { name: "Ed Sheeran", hair_colour_id: 4, eye_colour_id: 1, glasses: "no", facial_hair: "yes", alive: "yes", gender: "male", wears_hat: "no", occupation: "Singer/Musician" },
-  { name: "Martin Luther King Jr.", hair_colour_id: 2, eye_colour_id: 2, glasses: "yes", facial_hair: "yes", alive: "no", gender: "male", wears_hat: "no", occupation: "Politician" },
+  { name: "Freddie Mercury", hair_colour_id: 2, eye_colour_id: 2, glasses: "No", facial_hair: "Yes", alive: "No", gender: "male", wears_hat: "No", occupation_id: 4 },
+  { name: "Anne Hathaway", hair_colour_id: 1, eye_colour_id: 3, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 1 },
+  { name: "Frank Sinatra", hair_colour_id: 1, eye_colour_id: 1, glasses: "No", facial_hair: "No", alive: "No", gender: "male", wears_hat: "Yes", occupation_id: 4 },
+  { name: "Ed Sheeran", hair_colour_id: 4, eye_colour_id: 1, glasses: "No", facial_hair: "Yes", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 4 },
+  { name: "Martin Luther King Jr.", hair_colour_id: 2, eye_colour_id: 2, glasses: "Yes", facial_hair: "Yes", alive: "No", gender: "male", wears_hat: "No", occupation_id: 2 },
 
-  { name: "George Clooney", hair_colour_id: 5, eye_colour_id: 3, glasses: "no", facial_hair: "yes", alive: "yes", gender: "male", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Julia Roberts", hair_colour_id: 1, eye_colour_id: 3, glasses: "no", facial_hair: "no", alive: "yes", gender: "Female", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Donald Trump", hair_colour_id: 3, eye_colour_id: 1, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Politician" },
-  { name: "Johnny Depp", hair_colour_id: 2, eye_colour_id: 5, glasses: "no", facial_hair: "yes", alive: "yes", gender: "male", wears_hat: "yes", occupation: "Actor/Actress" },
-  { name: "Meryl Streep", hair_colour_id: 5, eye_colour_id: 1, glasses: "yes", facial_hair: "no", alive: "yes", gender: "Female", wears_hat: "no", occupation: "Actor/Actress" },
+  { name: "George Clooney", hair_colour_id: 5, eye_colour_id: 3, glasses: "No", facial_hair: "Yes", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 1 },
+  { name: "Julia Roberts", hair_colour_id: 1, eye_colour_id: 3, glasses: "No", facial_hair: "No", alive: "Yes", gender: "Female", wears_hat: "No", occupation_id: 1 },
+  { name: "Donald Trump", hair_colour_id: 3, eye_colour_id: 1, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 2 },
+  { name: "Johnny Depp", hair_colour_id: 2, eye_colour_id: 5, glasses: "No", facial_hair: "Yes", alive: "Yes", gender: "male", wears_hat: "Yes", occupation_id: 1},
+  { name: "Meryl Streep", hair_colour_id: 5, eye_colour_id: 1, glasses: "Yes", facial_hair: "No", alive: "Yes", gender: "Female", wears_hat: "No", occupation_id: 1 },
 
-  { name: "Nicole Kidman", hair_colour_id: 3, eye_colour_id: 1, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Harrison Ford", hair_colour_id: 5, eye_colour_id: 5, glasses: "no", facial_hair: "no", alive: "yes", gender: "Female", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Vladimir Putin", hair_colour_id: 3, eye_colour_id: 1, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Politician" },
-  { name: "Theresa May", hair_colour_id: 5, eye_colour_id: 1, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Politician" },
-  { name: "Tom Hanks", hair_colour_id: 5, eye_colour_id: 4, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Actor/Actress" },
+  { name: "Nicole Kidman", hair_colour_id: 3, eye_colour_id: 1, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 1 },
+  { name: "Harrison Ford", hair_colour_id: 5, eye_colour_id: 5, glasses: "No", facial_hair: "No", alive: "Yes", gender: "Female", wears_hat: "No", occupation_id: 1},
+  { name: "Vladimir Putin", hair_colour_id: 3, eye_colour_id: 1, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 2 },
+  { name: "Theresa May", hair_colour_id: 5, eye_colour_id: 1, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 2 },
+  { name: "Tom Hanks", hair_colour_id: 5, eye_colour_id: 4, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 1 },
 
-  { name: "Marilyn Monroe", hair_colour_id: 3, eye_colour_id: 3, glasses: "no", facial_hair: "no" , alive: "no", gender: "female", wears_hat: "no", occupation: "Actor/Actress" },
-  { name: "Nelson Mandela", hair_colour_id: 5, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "no", gender: "male", wears_hat: "no", occupation: "Politician" },
-  { name: "Muhammad Ali", hair_colour_id: 5, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "no", gender: "male", wears_hat: "no", occupation: "Athlete" },
-  { name: "David Beckham", hair_colour_id: 3, eye_colour_id: 5, glasses: "no", facial_hair: "yes", alive: "yes", gender: "male", wears_hat: "no", occupation: "Athlete" },
-  { name: "Albert Einstein", hair_colour_id: 5, eye_colour_id: 3, glasses: "no", facial_hair: "no", alive: "no", gender: "male", wears_hat: "no", occupation: "Scientist" },
+  { name: "Marilyn Monroe", hair_colour_id: 3, eye_colour_id: 3, glasses: "No", facial_hair: "No" , alive: "No", gender: "female", wears_hat: "No", occupation_id: 1 },
+  { name: "Nelson Mandela", hair_colour_id: 5, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "No", gender: "male", wears_hat: "No", occupation_id: 2 },
+  { name: "Muhammad Ali", hair_colour_id: 5, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "No", gender: "male", wears_hat: "No", occupation_id: 3 },
+  { name: "David Beckham", hair_colour_id: 3, eye_colour_id: 5, glasses: "No", facial_hair: "Yes", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 3 },
+  { name: "Albert Einstein", hair_colour_id: 5, eye_colour_id: 3, glasses: "No", facial_hair: "No", alive: "No", gender: "male", wears_hat: "No", occupation_id: 8 },
 
-  { name: "Homer Simpson", hair_colour_id: 2, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Cartoon Character" },
-  { name: "Bart Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Cartoon Character"},
-  { name: "Lisa Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Cartoon Character"},
-  { name: "Marge Simpson", hair_colour_id: 6, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Cartoon Character"},
-  { name: "Maggie Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Cartoon Character"},
+  { name: "Homer Simpson", hair_colour_id: 2, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 5 },
+  { name: "Bart Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 5 },
+  { name: "Lisa Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 5 },
+  { name: "Marge Simpson", hair_colour_id: 6, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 5 },
+  { name: "Maggie Simpson", hair_colour_id: 3, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 5 },
 
-  { name: "Charlie Brown", hair_colour_id: 2, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "no", occupation: "Cartoon Character" },
-  { name: "Eric Cartman", hair_colour_id: 1, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "yes", occupation: "Cartoon Character"},
-  { name: "Kenny McCormick", hair_colour_id: 3, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "yes", occupation: "Cartoon Character"},
-  { name: "Kyle Broflovski", hair_colour_id: 4, eye_colour_id: 2, glasses: "no", facial_hair: "no", alive: "yes", gender: "male", wears_hat: "yes", occupation: "Cartoon Character"},
-  { name: "Stan Marsh", hair_colour_id: 2, eye_colour_id: 3, glasses: "no", facial_hair: "no", alive: "yes", gender: "female", wears_hat: "no", occupation: "Cartoon Character"}
+  { name: "Charlie Brown", hair_colour_id: 2, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "No", occupation_id: 5 },
+  { name: "Eric Cartman", hair_colour_id: 1, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "Yes", occupation_id: 5 },
+  { name: "Kenny McCormick", hair_colour_id: 3, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "Yes", occupation_id: 5 },
+  { name: "Kyle Broflovski", hair_colour_id: 4, eye_colour_id: 2, glasses: "No", facial_hair: "No", alive: "Yes", gender: "male", wears_hat: "Yes", occupation_id: 5 },
+  { name: "Stan Marsh", hair_colour_id: 2, eye_colour_id: 3, glasses: "No", facial_hair: "No", alive: "Yes", gender: "female", wears_hat: "No", occupation_id: 5 }
 ]
-
 Player.create(characters)

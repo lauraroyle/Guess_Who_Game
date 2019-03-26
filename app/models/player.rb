@@ -9,21 +9,34 @@ class Player < ApplicationRecord
   belongs_to :eye_colour
   belongs_to :hair_colour
 
+  @yes_no = %w[Yes No]
+
   def self.glasses
-    %w[yes no]
+    @yes_no
   end
 
   def self.facial_hair
-    %w[yes no]
+    @yes_no
   end
 
   def self.alive
-    %w[yes no]
+    @yes_no
   end
+
+  def self.wears_hat
+    @yes_no
+  end
+
+  def self.gender
+    %w[Male Female]
+  end
+
   validates :glasses, inclusion: { in: self.glasses }
   validates :facial_hair, inclusion: { in: self.facial_hair }
   validates :alive, inclusion: { in: self.alive }
-
+  validates :gender, inclusion: { in: self.gender }
+  validates :wears_hat, inclusion: { in: self.wears_hat}
+  
   def self.top_players
     top_players = Player.all.sort_by{ |p| p.top_score}.reverse
   end

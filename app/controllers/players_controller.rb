@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: %i[show edit update]
+  before_action :set_player, only: %i[show: edit update]
 
   def index
     @players = Player.all
