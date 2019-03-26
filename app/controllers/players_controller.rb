@@ -44,6 +44,8 @@ class PlayersController < ApplicationController
       :eye_colour,
       :glasses,
       :facial_hair,
+      :occupation,
+      :wears_hat,
       :alive,
       :top_score
     )
