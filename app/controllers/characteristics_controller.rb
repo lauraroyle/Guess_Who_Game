@@ -1,0 +1,3 @@
+class CharacteristicsController < ApplicationController
+
+end

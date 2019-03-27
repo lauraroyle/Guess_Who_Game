@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190326134404) do
+ActiveRecord::Schema.define(version: 20190327155022) do
 
-  create_table "eye_colours", force: :cascade do |t|
-    t.string "colour"
+  create_table "characteristics", force: :cascade do |t|
+    t.string "characteristic_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,43 +25,41 @@ ActiveRecord::Schema.define(version: 20190326134404) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "game_questions", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "games", force: :cascade do |t|
     t.integer "score"
     t.integer "round"
     t.integer "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guess_who"
   end
 
-  create_table "hair_colours", force: :cascade do |t|
-    t.string "colour"
+  create_table "player_characteristics", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "characteristic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "occupations", force: :cascade do |t|
-    t.string "occupation"
   end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.integer "hair_colour_id"
-    t.integer "eye_colour_id"
-    t.string "glasses"
-    t.string "facial_hair"
-    t.string "alive", default: "yes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "top_score"
-    t.string "gender"
-    t.string "wears_hat"
-    t.integer "occupation_id"
   end
 
   create_table "questions", force: :cascade do |t|
     t.string "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "characteristic_id"
   end
 
 end

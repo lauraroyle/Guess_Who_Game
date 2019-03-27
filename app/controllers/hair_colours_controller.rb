@@ -1,2 +1,0 @@
-class HairColoursController < ApplicationController
-end

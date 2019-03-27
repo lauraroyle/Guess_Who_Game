@@ -1,19 +1,26 @@
 class Game < ApplicationRecord
   has_many :game_characters
+
   has_many :players, through: :game_characters
   belongs_to :player
-  # scope :hair_colour, ->(colour) { where(hair_colour: colour) }
 
-  #method that will return all the characters in a game
+  has_many :game_questions
+  has_many :questions, through: :game_questions
+
+  #method that aliases "Players" as "Characters" for easier reference.
   def characters
-    players
+    players #same as saying self.players
   end
 
-  def hair_colour(colour)
-    characters.where(hair_colour: colour)
+  # this method will choose 25 characters for a 5x5 board. not including self.
+  def self.set_up_game_characters(player)
+    all_characters = Player.all.select{ |p| p != player}
+    game_characters = all_characters.sample(25)
   end
 
-  def eye_colour(colour)
-    characters.where(eye_colour: colour)
+  def picked_character
   end
+
+
+
 end
