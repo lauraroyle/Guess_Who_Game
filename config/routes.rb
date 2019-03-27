@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-
+  resources :game_questions
   resources :player_characteristics
   resources :characteristics
   resources :questions
-  resources :eye_colours
-  resources :hair_colours
   resources :players
   resources :games
   resources :game_characters
@@ -18,5 +16,4 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/sessions', to: 'sessions#create', as: 'sessions'
   post '/logout', to: 'sessions#destroy', as: 'logout'
-
 end

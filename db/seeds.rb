@@ -30,41 +30,8 @@ characteristics = [
   { characteristic_name: 'Facial hair'}, #id = 28
   { characteristic_name: 'No facial hair'} #id = 29
 ]
+
 Characteristic.create(characteristics)
-#*******************questions*********************
-questions = [
-  { question: "Is the character male?", characteristic_id: 20},
-  { question: "Is the character female?", characteristic_id: 21},
-  { question: "Is the character alive?", characteristic_id: 22},
-  { question: "Is the character deceased?", characteristic_id: 23},
-  { question: "Does the character wear glasses?", characteristic_id: 24},
-  { question: "Does the character have facial hair?", characteristic_id: 28},
-  { question: "Does the character have green eyes?", characteristic_id: 4},
-  { question: "Does the character have blue eyes?", characteristic_id: 3},
-  { question: "Does the character have brown eyes?", characteristic_id: 1},
-  { question: "Does the character have black eyes?", characteristic_id: 2},
-  { question: "Does the character have hazel eyes?", characteristic_id: 5},
-  { question: "Does the character have black hair?", characteristic_id: 7},
-  { question: "Does the character have brown hair?", characteristic_id: 6},
-  { question: "Does the character have blonde hair?", characteristic_id: 8},
-  { question: "Does the character have grey hair?", characteristic_id: 10},
-  { question: "Does the character have red hair?", characteristic_id: 9},
-  { question: "Does the character have blue hair?", characteristic_id: 11},
-  { question: "Does the character wear a hat?", characteristic_id: 26},
-  { question: "Is the character a student at Flatiron?", characteristic_id: 17},
-  { question: "Is the character staff at Flatiron?", characteristic_id: 18},
-  { question: "Is the character an actor/actress?", characteristic_id: 12},
-  { question: "Is the character a singer/musician?", characteristic_id: 15},
-  { question: "Is the character a political figure?", characteristic_id: 13},
-  { question: "Is the character an athlete?", characteristic_id: 14},
-  { question: "Is the character a scientist?", characteristic_id: 19},
-  { question: "Is the character a cartoon character?", characteristic_id: 16},
-
-]
-Question.create(questions)
-
-
-
 
 #base game characters
 characters = [
@@ -104,7 +71,6 @@ characters = [
   { name: "Kyle Broflovski" }, #id=29
   { name: "Stan Marsh" } #id=30
   ]
-
   Player.create(characters)
   #************player_characteristics for base characters***********************
 #   player_characteristics = [#hair, eyes, glasses, facial hair, alive, gender, hat, occupation
@@ -144,10 +110,38 @@ characters = [
 #     {player_id: 29, characteristic_id: [9, 2, 25, 29, 22, 20, 26, 16]}, #kyle broflovski: red hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
 #     {player_id: 30, characteristic_id: [7, 2, 25, 29, 22, 20, 26, 16]}, #stan marsh: black hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
 #   ]
-#   PlayerCharacteristic.create()
 #
-#
-#
-#
-#
-#
+#   player_characteristics.each do |pc|
+#     pc.characteristic_id.each {|p| PlayerCharacteristic.create(player_id: p, characteristic_id: )
+#   end
+#*******************questions*********************
+questions = [
+  { question: "Is the character male?", characteristic_id: 20},
+  { question: "Is the character female?", characteristic_id: 21},
+  { question: "Is the character alive?", characteristic_id: 22},
+  { question: "Is the character deceased?", characteristic_id: 23},
+  { question: "Does the character wear glasses?", characteristic_id: 24},
+  { question: "Does the character have facial hair?", characteristic_id: 28},
+  { question: "Does the character have green eyes?", characteristic_id: 4},
+  { question: "Does the character have blue eyes?", characteristic_id: 3},
+  { question: "Does the character have brown eyes?", characteristic_id: 1},
+  { question: "Does the character have black eyes?", characteristic_id: 2},
+  { question: "Does the character have hazel eyes?", characteristic_id: 5},
+  { question: "Does the character have black hair?", characteristic_id: 7},
+  { question: "Does the character have brown hair?", characteristic_id: 6},
+  { question: "Does the character have blonde hair?", characteristic_id: 8},
+  { question: "Does the character have grey hair?", characteristic_id: 10},
+  { question: "Does the character have red hair?", characteristic_id: 9},
+  { question: "Does the character have blue hair?", characteristic_id: 11},
+  { question: "Does the character wear a hat?", characteristic_id: 26},
+  { question: "Is the character a student at Flatiron?", characteristic_id: 17},
+  { question: "Is the character staff at Flatiron?", characteristic_id: 18},
+  { question: "Is the character an actor/actress?", characteristic_id: 12},
+  { question: "Is the character a singer/musician?", characteristic_id: 15},
+  { question: "Is the character a political figure?", characteristic_id: 13},
+  { question: "Is the character an athlete?", characteristic_id: 14},
+  { question: "Is the character a scientist?", characteristic_id: 19},
+  { question: "Is the character a cartoon character?", characteristic_id: 16}
+]
+Question.create(questions)
+g = Game.create(player_id: Player.first.id)
