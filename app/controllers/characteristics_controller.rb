@@ -1,3 +1,2 @@
 class CharacteristicsController < ApplicationController
-
 end
