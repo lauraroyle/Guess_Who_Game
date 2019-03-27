@@ -29,10 +29,23 @@ class GamesController < ApplicationController
   def show
     @game_question = GameQuestion.new(game: @game)
     @game_characters = @game.characters
+    @guess_who = @game.guess_who
     @question_set = Question.all
-    if @game.questions.length != 0
+    @game.round = @game.questions.length
+    if @game.questions.length > 0 && @game.questions.length < 10
 
       @question_set = Question.all - @game.questions
+      @game.questions.each do |q|
+        if @guess_who.characterstics.include?(q.characteristic)
+          @game_characters = @game_characters.select do |gc|
+            gc.characteristics.include?(q.characteristic)
+          end
+        else
+          @game_characters -= @game_characters.select do |gc|
+            gc.characteristics.include?(q.characteristic)
+          end
+        end
+      end
 
     end
 
@@ -43,37 +56,6 @@ class GamesController < ApplicationController
         redirect_to lose_page_path
       end
     end
-
-    #   #if the user selects a question:
-    #   if @selected_question
-    #     @characteristic = @selected_question.characteristic
-    #     # check if @guess_who has this characteristic
-    #     if @guess_who.characteristics.include?(@characteristic)
-    #       # if the character does have this characteristic, remove those that dont.
-    #       @game_characters = @game_characters.map do |gc|
-    #         gc.characteristics.include?(@characteristic)
-    #       end
-    #     else # if guess_who doesnt have the characteristic, remove those that do.
-    #       @game_characters -= @game_characters.map do |gc|
-    #         gc.characteristics.include?(@characteristic)
-    #       end
-    #     end
-    #     @game.round += 1
-    #     # remove the asked question from the question array before next round
-    #     @question_set -= @selected_question
-    #
-    #    #if the user tries to guess who by clicking on a character @player_guess
-    #  else
-    #    if @player_guess == @guess_who
-    #      @game.score = @game.round
-    #      redirect_to win_path
-    #    else
-    #      redirect_to lose_path
-    #    end
-    #  end
-    #
-    # end
-
   end
 
   private
