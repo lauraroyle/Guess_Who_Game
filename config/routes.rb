@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :player_characteristics
   resources :characteristics
   resources :questions
@@ -7,5 +8,15 @@ Rails.application.routes.draw do
   resources :players
   resources :games
   resources :game_characters
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # user account management
+  get '/signup', to: 'players#new', as: 'signup'
+  post '/signup', to: 'players#create'
+  # get '/players/:id', to: 'players#show', as: 'player'
+
+  # sessions management
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/sessions', to: 'sessions#create', as: 'sessions'
+  post '/logout', to: 'sessions#destroy', as: 'logout'
+
 end
