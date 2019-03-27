@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   def new
     # figure out how to find the current player in the game controller
     # @player = Player.find(params[:id])
-    # @game = Game.new(score: 0, round: 1, player_id: @player)
+    # @game = Game.new(score: 0, round: 1, player: @player)
   end
 
   def create
@@ -13,7 +13,8 @@ class GamesController < ApplicationController
 
   def show
     # use method in game model to set up game characters
-    @game_characters = Game.set_up_game_characters
+    # @player = Player.find(params[:id])
+    @game_characters = Game.set_up_game_characters(player)
     # pick one out of the 25 characters to be the guess who character
     @guess_who = @game_characters.sample
     # set up associations in GameCharacters table

@@ -33,8 +33,8 @@ class Game < ApplicationRecord
 
   # *************************GAME PLAY***********************************
 
-  # this method will choose 25 characters for a 5x5 board. It will then
-  def self.set_up_game_characters
+  # this method will choose 25 characters for a 5x5 board. not including self. It will then
+  def self.set_up_game_characters(player)
     Game.all.sample(25)
   end
 
