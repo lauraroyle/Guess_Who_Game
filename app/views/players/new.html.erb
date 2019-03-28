@@ -1,24 +1,53 @@
 <h1>New Player</h1>
-<%= form_for @player, :url => '/signup' do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <p>What is your gender?</p>
-  <%= f.collection_select :gender, Player.gender, :to_s, :to_s, {prompt: "Select your gender"} %><br>
-  <p>What colour is your hair?</p>
-  <%= f.collection_select :hair_colour_id, HairColour.all, :id, :colour, {prompt: "Select your hair colour"} %><br>
-  <p>What colour are your eyes?</p>
-  <%= f.collection_select :eye_colour_id, EyeColour.all, :id, :colour, {prompt: "Select your eye colour"} %><br>
-  <p>Do you wear glasses?</p>
-  <%= f.collection_select :glasses, Player.glasses, :to_s, :to_s, {prompt: "Do you wear glasses?"} %><br>
-  <p>Do you have facial hair?</p>
-  <%= f.collection_select :facial_hair, Player.facial_hair, :to_s, :to_s, {prompt: "Do you have facial hair?"} %><br>
-  <p>What is your occupation?</p>
-  <%= f.collection_select :occupation_id, Occupation.all, :id, :occupation, {prompt: "Select your occupation"} %><br>
-  <p>Are you wearing a hat in your profile photo?</p>
-  <%= f.collection_select :wears_hat, Player.wears_hat, :to_s, :to_s, {prompt: "Do you wear a hat?"} %><br><br>
-  <%= f.hidden_field :alive, value: "yes" %>
+<%= form_for @player, html: {multipart: true}, url: '/signup' do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
   <%= f.hidden_field :top_score, value: "0" %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <h2>Profile Information:</h2>
+  <div class="field">
+    <p>What is your gender?
+    <%= f.collection_select :gender, Characteristic.gender, :id, :characteristic_name, {prompt: "Select one"} %></p>
+  </div>
+<div class="field">
+  <p>What colour are your eyes?
+  <%= f.collection_select :eye_colour, Characteristic.eye_colours, :id, :characteristic_name, {prompt: "Select your eye colour"} %></p>
+</div>
+<div class="field">
+  <p>What colour is your hair?
+  <%= f.collection_select :hair_colour, Characteristic.hair_colours, :id, :characteristic_name, {prompt: "Select your hair colour"} %></p>
+</div>
+<div class="">
+  <p>Do you wear glasses?
+  <%= f.collection_select :glasses, Characteristic.glasses, :id, :characteristic_name, {prompt: "Select one"} %></p>
+</div>
+<div class="field">
+  <p>Do you have facial hair?
+  <%= f.collection_select :facial_hair, Characteristic.facial_hair, :id, :characteristic_name, {prompt: "Select one"} %></p>
+</div>
+<div class="field">
+  <%= f.hidden_field :alive, value: "22" %>
+</div>
+<div class="field">
+  <p>Are you wearing a hat in your profile photo?
+  <%= f.collection_select :wears_hat, Characteristic.wears_hat, :id, :characteristic_name, {prompt: "Select one"} %></p>
+</div>
+<div class="field">
+  <p>What is your occupation?
+  <%= f.collection_select :occupation, Characteristic.occupation, :id, :characteristic_name, {prompt: "Select one"} %></p>
+</div>
+<div class="actions">
   <%= f.submit %>
+</div>
 <% end %>

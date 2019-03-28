@@ -1,8 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[show edit update]
-
   def new
-    @player = current_player
+    @player = current_user
     @game = Game.new(score: 0, round: 1, player: @player)
   end
 
@@ -10,16 +9,12 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     if @game.valid?
       @game.save
-      # use method in game model to set up game characters
-      @game_characters = Game.set_up_game_characters(@game.player)
-      # pick one out of the 25 characters to be the guess who character
+      @game_characters = Game.set_up_game_characters(@game.player_id)
       @guess_who = @game_characters.sample
-      @game.guess_who = @guess_who.id
-      # set up associations in GameCharacters table
+      @game.update(guess_who: @guess_who.id)
       @game_characters.each do |gc|
         GameCharacter.create(game: @game, player_id: gc.id)
       end
-
       redirect_to @game
     else
       render :new
@@ -28,47 +23,49 @@ class GamesController < ApplicationController
 
   def show
     @game_question = GameQuestion.new(game: @game)
-    @game_characters = @game.characters
-    @guess_who = @game.guess_who
+    @current_game_characters = @game.characters
+    @guess_who = Player.find(@game.guess_who)
     @question_set = Question.all
+    # byebug
     @game.round = @game.questions.length
-    if @game.questions.length > 0 && @game.questions.length < 10
-
+    if @game.questions.length > 0
+      # take the questions out of the question set.
       @question_set = Question.all - @game.questions
-      @game.questions.each do |q|
-        if @guess_who.characterstics.include?(q.characteristic)
-          @game_characters = @game_characters.select do |gc|
-            gc.characteristics.include?(q.characteristic)
-          end
-        else
-          @game_characters -= @game_characters.select do |gc|
-            gc.characteristics.include?(q.characteristic)
+      question_characteristic = Question.find(params[:id]).characteristic_id
+      guess_who_has_characteristic = @guess_who.characteristic_ids.include?(
+        question_characteristic
+      )
+
+      if guess_who_has_characteristic
+        failed_characters = @game.characters.filter { |character| character.characteristic_ids.exclude?(question_characteristic) }
+      else
+        failed_characters = @game.characters.filter { |character| character.characteristic_ids.include?(question_characteristic) }
+      end
+
+      game_character_records = GameCharacter.where(game_id: @game.id)
+
+      game_character_records.all.each do |gc|
+        failed_characters.each do |fc|
+          if gc.player_id == fc.id
+            byebug
+            gc.destroy
           end
         end
       end
 
     end
 
-    def update
-      if @game.guess_who == params[:game][:picked_character]
-        redirect_to you_win_path
-      else
-        redirect_to you_lose_path
-      end
+
+  end
+
+  def update
+    if @game.guess_who == params[:game][:picked_character]
+      render :you_win
+    else
+      render :you_lose
     end
   end
 
-  def rules
-
-  end
-
-  def you_win
-    render :you_win
-  end
-
-  def you_lose
-    render :you_lose
-  end
 
   private
 
@@ -79,4 +76,5 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:score, :round, :player_id)
   end
+
 end

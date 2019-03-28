@@ -1,0 +1,16 @@
+<h1><%= @player.name %></h1>
+
+<p id="notice"><%= notice %></p>
+
+ <%= image_tag @player.image_url, width: '75%', alt: 'your photo' %>
+
+<h2>Top Score: <% @player.top_score %></h2>
+<br>
+<h2>Characteristics</h2>
+<ul>
+  <% @player.characteristics.each do |ch| %>
+    <li><%= ch.characteristic_name %></li>
+  <% end %>
+</ul>
+
+<a class="btn btn-primary" href="<%=edit_player_path%>" role="button">Edit Profile</a>
