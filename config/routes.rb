@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/', to: 'application#welcome', as: 'welcome'
   get '/you_win', to: 'games#you_win', as: 'you_win'
   get '/you_lose', to: 'games#you_lose', as: 'you_lose'
+  get '/rules', to: 'games#rules', as: 'rules'
 
   # user account management
   get '/signup', to: 'players#new', as: 'signup'

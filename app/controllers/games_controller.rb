@@ -58,6 +58,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def rules
+
+  end
+
   def you_win
     render :you_win
   end

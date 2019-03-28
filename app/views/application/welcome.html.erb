@@ -6,8 +6,8 @@
           <%= image_tag("guess_who.jpg") %>
         </p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Sign up</a>
-          <a href="#" class="btn btn-lg btn-secondary">Login</a>
+          <%= link_to 'Signup', signup_path, class: "btn btn-lg btn-secondary" %>
+          <%= link_to 'Login', login_path, class: "btn btn-lg btn-secondary" %>
         </p>
     </main>
   </div>
