@@ -51,11 +51,19 @@ class GamesController < ApplicationController
 
     def update
       if @game.guess_who == params[:game][:picked_character]
-        redirect_to win_page_path
+        redirect_to you_win_path
       else
-        redirect_to lose_page_path
+        redirect_to you_lose_path
       end
     end
+  end
+
+  def you_win
+    render :you_win
+  end
+
+  def you_lose
+    render :you_lose
   end
 
   private
