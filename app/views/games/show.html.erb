@@ -1,9 +1,23 @@
 
-  <%= form_for @game_question do |f| %>
-    <%= f.collection_select :question_id, @question_set, :id, :question %>
-    <%= f.hidden_field :game_id, value: @game.id %>
-    <%= f.submit "submit question" %>
+<div class="container">
+  <div class="row">
+    <% @game.characters.each do |char| %>
+      <div class="col-md-2">
+        <div class="char-card" style="">
+          <img src= <%= "#{char.image_url}" %> alt="">
+          <p><%= "#{char.name}" %></p>
+        </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+ <%= form_for @game_question do |f| %>
+   <%= f.collection_select :question_id, @question_set, :id, :question %>
+   <%= f.hidden_field :game_id, value: @game.id %>
+   <%= f.submit "submit question" %>
   <% end %>
+
 
 <%= form_for @game, {method: "patch"} do |f| %>
 <%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>

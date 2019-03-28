@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
+  #Welcome
+    def welcome
+      render :welcome
+    end
+
   def current_user
     if session[:user_id]
       Player.find(session[:user_id])
@@ -30,5 +35,6 @@ class ApplicationController < ActionController::Base
       redirect_to players_path
     end
   end
+
 
 end

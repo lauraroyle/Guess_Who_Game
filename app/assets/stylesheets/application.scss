@@ -1,1 +1,28 @@
 @import "bootstrap";
+
+body {
+  background-color:  #cce5ff !important;
+}
+
+nav {
+  background-color: red !important;
+}
+
+
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-nav {
+      margin-right: 37%;
+  }
+}
+
+// @media (min-width: 992px){
+//   .screen {
+//     width: auto;
+//     min-width: 100vw;
+//     height: 100vh;
+//     position: fixed;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+// }
+// }
