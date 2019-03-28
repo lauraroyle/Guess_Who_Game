@@ -54,37 +54,6 @@ class GamesController < ApplicationController
       end
 
     end
-
-
-
-
-    # if a question has been asked, @game.questions.length > 0
-    # if @game.questions.length > 0
-    #   # take the questions out of the question set.
-    #   @question_set = Question.all - @game.questions
-    #   # for each question that has been asked:
-    #    @game.questions.each do |q|
-    #      # for each game character
-    #     @current_game_characters.each do |gc|
-    #       # if the @guess_who character has that characteritic in question
-    #       if @guess_who.characteristics.include?(q.characteristic_id)
-    #         # if the game character does not have that characteristic
-    #         if !(gc.characteristics.include?(q.characteristic_id))
-    #           # destroy the game_character record
-    #           gc_record = GameCharacter.find_by(player_id: gc.id)
-    #           gc_record.destroy
-    #         end
-    #       else
-    #         # if the guess who does not have the characteristic but the gc does
-    #         if (gc.characteristics.include?(q.characteristic_id))
-    #           # destroy the game_character record
-    #           gc_record = GameCharacter.find_by(player_id: gc.id)
-    #           gc_record.destroy
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
   end
 
   def update
