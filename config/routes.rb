@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  resources :game_questions
-  resources :player_characteristics
-  resources :characteristics
-  resources :questions
   resources :players
   resources :games
-  resources :game_characters
+  resources :game_questions
 
   # user account management
   get '/signup', to: 'players#new', as: 'signup'

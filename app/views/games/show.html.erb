@@ -1,4 +1,4 @@
-<% if @game.round != 10 %>
+<% if @game.round < 10 %>
   <%= form_for @game_question do |f| %>
     <%= f.collection_select :question_id, @question_set, :id, :question %>
     <%= f.hidden_field :game_id, value: @game.id %>

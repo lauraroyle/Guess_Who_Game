@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: %i[show edit update]
 
   def new
-    @player = current_player
+    @player = current_user
     @game = Game.new(score: 0, round: 1, player: @player)
   end
 
@@ -14,12 +14,11 @@ class GamesController < ApplicationController
       @game_characters = Game.set_up_game_characters(@game.player)
       # pick one out of the 25 characters to be the guess who character
       @guess_who = @game_characters.sample
-      @game.guess_who = @guess_who.id
+      @game.guess_who = @guess_who
       # set up associations in GameCharacters table
       @game_characters.each do |gc|
         GameCharacter.create(game: @game, player_id: gc.id)
       end
-
       redirect_to @game
     else
       render :new
@@ -35,17 +34,17 @@ class GamesController < ApplicationController
     if @game.questions.length > 0 && @game.questions.length < 10
 
       @question_set = Question.all - @game.questions
-      @game.questions.each do |q|
-        if @guess_who.characterstics.include?(q.characteristic)
-          @game_characters = @game_characters.select do |gc|
-            gc.characteristics.include?(q.characteristic)
-          end
-        else
-          @game_characters -= @game_characters.select do |gc|
-            gc.characteristics.include?(q.characteristic)
-          end
-        end
-      end
+      # @game.questions.each do |q|
+      #   if @guess_who.characterstics.include?(q.characteristic)
+      #     @game_characters = @game_characters.select do |gc|
+      #       gc.characteristics.include?(q.characteristic)
+      #     end
+      #   else
+      #     @game_characters -= @game_characters.select do |gc|
+      #       gc.characteristics.include?(q.characteristic)
+      #     end
+      #   end
+      # end
 
     end
 
