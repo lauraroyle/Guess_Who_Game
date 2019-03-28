@@ -1,8 +1,12 @@
 <h1><%= @player.name %></h1>
 
-<img src=<%="/lib/assets/#{@player.first_name}_#{@player.last_name}.jpg"%> alt="">
 <%= image_tag("#{@player.first_name}_#{@player.last_name}.jpg", width: '80%') %>
-<%=  %>
-<p>Top Score: <% @player.top_score %></p>
+
+<h2>Top Score: <% @player.top_score %></h2>
 <br>
 <h2>Characteristics</h2>
+<ul>
+  <% @player.characteristics.each do |ch| %>
+    <li><%= ch.characteristic_name %></li>
+  <% end %>
+</ul>

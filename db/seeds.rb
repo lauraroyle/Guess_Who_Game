@@ -83,10 +83,10 @@ characters = [
     {player_id: 6, characteristic_id: [10, 1, 25, 28, 22, 20, 27, 12]}, #George Clooney: Grey hair, brown eyes, no glasses, facial hair, not alive, male, no hat, actor/actress
     {player_id: 7, characteristic_id: [6, 1, 25, 29, 22, 21, 27, 12]}, #Julia Roberts: brown hair, brown eyes, no glasses, no facial hair, not alive, male, no hat, actor/actress
     {player_id: 8, characteristic_id: [8, 3, 25, 29, 22, 20, 27, 13]}, #Donald Trump: blonde hair, blue eyes, no glasses, no facial hair, not alive, male, no hat, politician
-    {player_id: 9, characteristic_id: [7, 5, 24, 28, 22, 20, 26, 12]}, #Johnny Depp: black hair, hazel eyes, glasses, facial hair, not alive, male, no hat, actor/actress
-    {player_id: 10, characteristic_id: [10, 3, 24, 29, 22, 21, 27, 12]}, #Meryl Streep: black hair, blue eyes, glasses, no facial hair, not alive, male, no hat, actor/actress
+    {player_id: 9, characteristic_id: [7, 5, 24, 28, 22, 20, 27, 12]}, #Johnny Depp: black hair, hazel eyes, glasses, facial hair, not alive, male, no hat, actor/actress
+    {player_id: 10, characteristic_id: [8, 3, 24, 29, 22, 21, 27, 12]}, #Meryl Streep: black hair, blue eyes, glasses, no facial hair, not alive, male, no hat, actor/actress
 
-    {player_id: 11, characteristic_id: [8, 3, 25, 29, 22, 21, 27, 12]}, # Nicole Kidman: blonde hair, blue eyes, no glasses, no facial hair, alive, female, no hat, actor/actress
+    {player_id: 11, characteristic_id: [9, 3, 25, 29, 22, 21, 27, 12]}, # Nicole Kidman: blonde hair, blue eyes, no glasses, no facial hair, alive, female, no hat, actor/actress
     {player_id: 12, characteristic_id: [10, 5, 25, 29, 22, 20, 27, 12]}, # Harrison Ford: Grey hair, hazel eyes, no glasses, no facial hair, alive, male, no hat, actor/actress
     {player_id: 13, characteristic_id: [8, 3, 25, 29, 22, 20, 27, 13]}, # Vladimir Putin: blonde hair, blue eyes, no glasses, no facial hair, alive, male, no hat, politician
     {player_id: 14, characteristic_id: [10, 3, 25, 29, 22, 21, 27, 13]}, # Theresa May: grey hair, blue eyes, no glasses, no facial hair, alive, female, no hat, politician
@@ -107,7 +107,7 @@ characters = [
     {player_id: 26, characteristic_id: [7, 2, 25, 29, 22, 20, 27, 16]}, #Charlie Brown: black hair, black eyes, no glasses, no facial hair, alive, male, no hat, cartoon
     {player_id: 27, characteristic_id: [6, 2, 25, 29, 22, 20, 26, 16]}, #Eric Cartman: black hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
     {player_id: 28, characteristic_id: [8, 2, 25, 29, 22, 20, 26, 16]}, #kenny mccormick: blonde hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
-    {player_id: 29, characteristic_id: [9,  2, 25, 29, 22, 20, 26, 16]}, #kyle broflovski: red hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
+    {player_id: 29, characteristic_id: [9, 2, 25, 29, 22, 20, 26, 16]}, #kyle broflovski: red hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
     {player_id: 30, characteristic_id: [7, 2, 25, 29, 22, 20, 26, 16]}, #stan marsh: black hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
   ]
 #
