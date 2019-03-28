@@ -45,4 +45,11 @@ class Player < ApplicationRecord
 
   def wears_hat
   end
+
+  def alive
+  end
+
+  def facial_hair
+  end
+
 end

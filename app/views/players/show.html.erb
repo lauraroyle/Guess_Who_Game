@@ -1,6 +1,6 @@
 <h1><%= @player.name %></h1>
 
-<%= image_tag("#{@player.first_name}_#{@player.last_name}.jpg", width: '80%') %>
+<%= image_tag("#{@player.first_name}_#{@player.last_name}.jpg", width: '80%', alt: 'your photo') %>
 
 <h2>Top Score: <% @player.top_score %></h2>
 <br>
@@ -10,3 +10,5 @@
     <li><%= ch.characteristic_name %></li>
   <% end %>
 </ul>
+
+<a class="btn btn-primary" href="<%=edit_player_path%>" role="button">Edit Profile</a>

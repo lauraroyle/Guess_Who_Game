@@ -17,9 +17,26 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new(player_params)
+    @player = Player.new(
+      name: player_params[:name],
+      top_score: player_params[:top_score]
+    )
     if @player.valid?
       @player.save
+      characteristics = [
+        params[:player][:gender],
+        params[:player][:hair_colour],
+        params[:player][:eye_colour],
+        params[:player][:facial_hair],
+        params[:player][:alive],
+        params[:player][:glasses],
+        params[:player][:wears_hat],
+        params[:player][:occupation]
+      ]
+      characteristics.each do |c|
+        PlayerCharacteristic.create(player_id: @player.id, characteristic_id: c)
+      end
+
       redirect_to @player
     else
       render :new
@@ -37,7 +54,19 @@ class PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:name, :top_score)
+    params.require(:player).permit(
+      :name,
+      :password,
+      :top_score,
+      :gender,
+      :eye_colour,
+      :hair_colour,
+      :glasses,
+      :facial_hair,
+      :alive,
+      :wears_hat,
+      :occupation
+    )
   end
 
   def set_player
