@@ -35,20 +35,20 @@ Characteristic.create(characteristics)
 
 #base game characters
 characters = [
-  { name: "Freddie Mercury" }, #id=1
-  { name: "Anne Hathaway" }, #id=2
-  { name: "Frank Sinatra" }, #id=3
-  { name: "Ed Sheeran" }, #id=4
-  { name: "Martin Luther King" }, #id=5
+  { name: "Freddie Mercury"}, #id=1
+  { name: "Anne Hathaway"}, #id=2
+  { name: "Frank Sinatra"}, #id=3
+  { name: "Ed Sheeran"}, #id=4
+  { name: "Martin Luther King"}, #id=5
 
-  { name: "George Clooney" }, #id=6
-  { name: "Julia Roberts" }, #id=7
-  { name: "Donald Trump" }, #id=8
-  { name: "Johnny Depp" }, #id=9
-  { name: "Meryl Streep" }, #id=10
+  { name: "George Clooney"}, #id=6
+  { name: "Julia Roberts"}, #id=7
+  { name: "Donald Trump"}, #id=8
+  { name: "Johnny Depp"}, #id=9
+  { name: "Meryl Streep"}, #id=10
 
-  { name: "Nicole Kidman" }, #id=11
-  { name: "Harrison Ford" }, #id=12
+  { name: "Nicole Kidman"}, #id=11
+  { name: "Harrison Ford"}, #id=12
   { name: "Vladimir Putin" }, #id=13
   { name: "Theresa May" }, #id=14
   { name: "Tom Hanks" }, #id=15
@@ -110,7 +110,7 @@ characters = [
     {player_id: 29, characteristic_id: [9, 2, 25, 29, 22, 20, 26, 16]}, #kyle broflovski: red hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
     {player_id: 30, characteristic_id: [7, 2, 25, 29, 22, 20, 26, 16]}, #stan marsh: black hair, black eyes, no glasses, no facial hair, alive, male, hat, cartoon
   ]
-#
+
 player_characteristics.each do |pc|
   p = pc[:player_id]
   pc[:characteristic_id].each do |c|
@@ -147,5 +147,23 @@ questions = [
   { question: "Is the character a scientist?", characteristic_id: 19},
   { question: "Is the character a cartoon character?", characteristic_id: 16}
 ]
+
+
 Question.create(questions)
-g = Game.create(player_id: Player.first.id)
+@game = Game.create(player_id: Player.first.id)
+@game_characters = Game.set_up_game_characters(@game.player_id)
+# pick one out of the 25 characters to be the guess who character
+@guess_who = @game_characters.sample
+@game.update(guess_who: @guess_who.id)
+# set up associations in GameCharacters table
+@game_characters.each do |gc|
+  GameCharacter.create(game: @game, player_id: gc.id)
+end
+
+
+Player.all.each do |p|
+  p.update(image: File.open("app/assets/images/#{p.first_name}_#{p.last_name}.jpg"))
+end
+#File.open(File.join('../app/assets/images', 'Albert_Einstien.jpg')
+
+# player.update(image: "../")

@@ -8,9 +8,16 @@ class Player < ApplicationRecord
   has_many :games
   has_many :player_characteristics
   has_many :characteristics, through: :player_characteristics
+  mount_uploader :image, ImageUploader
+  validates_processing_of :image
+  validate :image_size_validation
 
   def self.top_players
     top_players = Player.all.sort_by{ |p| p.top_score}.reverse
+  end
+
+  def rename_img
+
   end
 
   def first_name
@@ -52,4 +59,9 @@ class Player < ApplicationRecord
   def facial_hair
   end
 
+  private
+
+  def image_size_validation
+    errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
+  end
 end

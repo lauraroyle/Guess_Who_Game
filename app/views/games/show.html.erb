@@ -1,12 +1,11 @@
-<% if @game.round < 10 %>
+
   <%= form_for @game_question do |f| %>
     <%= f.collection_select :question_id, @question_set, :id, :question %>
     <%= f.hidden_field :game_id, value: @game.id %>
     <%= f.submit "submit question" %>
   <% end %>
-<% end %>
 
 <%= form_for @game, {method: "patch"} do |f| %>
-<%= f.collection_select :picked_character, @game.characters, :id, :name %>
+<%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>
 <%= f.submit "guess who" %>
 <% end %>

@@ -1,6 +1,8 @@
 <h1><%= @player.name %></h1>
 
-<%= image_tag("#{@player.first_name}_#{@player.last_name}.jpg", width: '80%', alt: 'your photo') %>
+<p id="notice"><%= notice %></p>
+
+ <%= image_tag @player.image_url, width: '75%', alt: 'your photo' %>
 
 <h2>Top Score: <% @player.top_score %></h2>
 <br>

@@ -13,8 +13,8 @@ class Game < ApplicationRecord
   end
 
   # this method will choose 25 characters for a 5x5 board. not including self.
-  def self.set_up_game_characters(player)
-    all_characters = Player.all.select{ |p| p != player}
+  def self.set_up_game_characters(player_id)
+    all_characters = Player.all.select{ |p| p.id != player_id}
     game_characters = all_characters.sample(25)
   end
 
