@@ -47,7 +47,6 @@ class GamesController < ApplicationController
       game_character_records.all.each do |gc|
         failed_characters.each do |fc|
           if gc.player_id == fc.id
-            byebug
             gc.destroy
           end
         end

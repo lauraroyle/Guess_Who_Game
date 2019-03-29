@@ -1,13 +1,13 @@
 
-<div class="container">
-  <div class="row">
+<div class="page_layout">
+  <div class="cards_list">
     <% @game.characters.each do |char| %>
-      <div class="col-md-2">
+      <div class="my_card">
         <div class="char-card" style="">
-          <img class="imagesizer"src= <%= "#{char.image_url}" %> alt="">
+          <div class="image_wrapper"><img class="imagesizer"src= <%= "#{char.image_url}" %> alt=""></div>
           <p><%= "#{char.name}" %></p>
         </div>
-        </div>
+      </div>
     <% end %>
   </div>
 </div>
