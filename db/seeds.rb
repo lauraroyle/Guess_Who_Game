@@ -72,7 +72,13 @@ characters = [
   { name: "Stan Marsh" } #id=30
   ]
   Player.create(characters)
+
+  Player.all.each do |p|
+    p.update(image: File.open("app/assets/images/#{p.first_name}_#{p.last_name}.jpg"))
+  end
+
   #************player_characteristics for base characters***********************
+
   player_characteristics = [
     {player_id: 1, characteristic_id: [7, 2, 25, 28, 23, 20, 27, 15]}, #Freddie Murcury: black hair, black eyes, no glasses, facial hair, not alive, male, no hat, singer/musician
     {player_id: 2, characteristic_id: [6, 1, 25, 29, 22, 21, 27, 12]}, #Anne Hathaway: brown hair, brown eyes, no glasses, no facial hair, alive, female, no hat, actor/actress
@@ -148,7 +154,6 @@ questions = [
   { question: "Is the character a cartoon character?", characteristic_id: 16}
 ]
 
-
 Question.create(questions)
 @game = Game.create(player_id: Player.first.id)
 @game_characters = Game.set_up_game_characters(@game.player_id)
@@ -159,11 +164,3 @@ Question.create(questions)
 @game_characters.each do |gc|
   GameCharacter.create(game: @game, player_id: gc.id)
 end
-
-
-Player.all.each do |p|
-  p.update(image: File.open("app/assets/images/#{p.first_name}_#{p.last_name}.jpg"))
-end
-#File.open(File.join('../app/assets/images', 'Albert_Einstien.jpg')
-
-# player.update(image: "../")

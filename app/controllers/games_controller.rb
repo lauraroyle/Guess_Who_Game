@@ -1,17 +1,25 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[show edit update]
+  before_action :require_login, only: %i[show new create edit]
+
+
   def new
-    @player = current_user
+    @player = current_player
     @game = Game.new(score: 0, round: 1, player: @player)
   end
 
   def create
-    @game = Game.new(game_params)
+    @player = current_player
+    @game = Game.new(score: 0, round: 1, player: @player)
     if @game.valid?
       @game.save
+      # chooses 25 random characters
       @game_characters = Game.set_up_game_characters(@game.player_id)
+      # chooses 1 of teh 25 to be the guess who
       @guess_who = @game_characters.sample
+      # update the game with the guess who character id.
       @game.update(guess_who: @guess_who.id)
+      # create association with the game and the characters
       @game_characters.each do |gc|
         GameCharacter.create(game: @game, player_id: gc.id)
       end
@@ -22,11 +30,12 @@ class GamesController < ApplicationController
   end
 
   def show
+    # make an association between game and a new question
     @game_question = GameQuestion.new(game: @game)
-    @current_game_characters = @game.characters
+    # @current_game_characters = @game.characters
+    # get the instance of the guess who player
     @guess_who = Player.find(@game.guess_who)
     @question_set = Question.all
-    # byebug
     @game.round = @game.questions.length
     if @game.questions.length > 0
       # take the questions out of the question set.
@@ -47,13 +56,15 @@ class GamesController < ApplicationController
       game_character_records.all.each do |gc|
         failed_characters.each do |fc|
           if gc.player_id == fc.id
-            byebug
             gc.destroy
           end
         end
       end
 
     end
+  end
+
+  def edit
   end
 
   def update
@@ -72,7 +83,10 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:score, :round, :player_id)
+    params.require(:game).permit(:score, :round, :player_id, :player)
   end
 
+  def require_login
+    authorized?
+  end
 end
