@@ -11,7 +11,8 @@ class Player < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates_processing_of :image
   validate :image_size_validation
-
+  has_secure_password
+ 
   def self.top_players
     top_players = Player.all.sort_by{ |p| p.top_score}.reverse
   end

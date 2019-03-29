@@ -6,7 +6,9 @@ class PlayersController < ApplicationController
   end
 
   # the player show page will show his profile data and statistitics
-  def show; end
+  def show
+
+  end
 
   # the edit page will let the player edit their name, username, and their characteristics
   def edit; end
@@ -26,22 +28,40 @@ class PlayersController < ApplicationController
 
     if @player.valid?
       @player.save
-      characteristics = [
-        params[:player][:gender],
-        params[:player][:hair_colour],
-        params[:player][:eye_colour],
-        params[:player][:facial_hair],
-        params[:player][:alive],
-        params[:player][:glasses],
-        params[:player][:wears_hat],
-        params[:player][:occupation]
-      ]
+
+      characteristics = []
+      if player_params[:gender]
+        characteristics << player_params[:gender]
+      end
+      if player_params[:hair_colour]
+        characteristics << player_params[:hair_colour]
+      end
+      if player_params[:eye_colour]
+        characteristics << player_params[:eye_colour]
+      end
+      if player_params[:facial_hair]
+        characteristics << player_params[:facial_hair]
+      end
+      if player_params[:alive]
+        characteristics << player_params[:alive]
+      end
+      if player_params[:glasses]
+        characteristics << player_params[:glasses]
+      end
+      if player_params[:wears_hat]
+        characteristics << player_params[:wears_hat]
+      end
+      if player_params[:occupation]
+        characteristics << player_params[:occupation]
+      end
       characteristics.each do |c|
         PlayerCharacteristic.create(player_id: @player.id, characteristic_id: c)
       end
+      session[:player_id] = @player.id
 
       redirect_to @player
     else
+      flash[:errors] = ['Something went wrong, try again']
       render :new
     end
   end
