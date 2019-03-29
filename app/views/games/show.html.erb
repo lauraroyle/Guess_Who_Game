@@ -4,7 +4,7 @@
     <% @game.characters.each do |char| %>
       <div class="col-md-2">
         <div class="char-card" style="">
-          <img src= <%= "#{char.image_url}" %> alt="">
+          <img class="imagesizer"src= <%= "#{char.image_url}" %> alt="">
           <p><%= "#{char.name}" %></p>
         </div>
         </div>
