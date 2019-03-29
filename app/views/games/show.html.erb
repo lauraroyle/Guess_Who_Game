@@ -12,14 +12,19 @@
   </div>
 </div>
 
- <%= form_for @game_question do |f| %>
-   <%= f.collection_select :question_id, @question_set, :id, :question %>
-   <%= f.hidden_field :game_id, value: @game.id %>
-   <%= f.submit "submit question" %>
-  <% end %>
+
+<div class="question_form">
+  <h1>Ask a Question or Guess Who?</h1>
+  <%= form_for @game_question do |f| %>
+    <%= f.collection_select :question_id, @question_set, :id, :question %>
+    <%= f.hidden_field :game_id, value: @game.id %>
+    <%= f.submit "submit question" %>
+   <% end %>
 
 
-<%= form_for @game, {method: "patch"} do |f| %>
-<%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>
-<%= f.submit "guess who" %>
-<% end %>
+ <%= form_for @game, {method: "patch"} do |f| %>
+ <%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>
+ <%= f.submit "guess who" %>
+ <% end %>
+
+</div>
