@@ -1,25 +1,30 @@
 
-<div class="container">
-  <div class="row">
+<div class="page_layout">
+  <div class="cards_list">
     <% @game.characters.each do |char| %>
-      <div class="col-md-2">
+      <div class="my_card">
         <div class="char-card" style="">
-          <img class="imagesizer"src= <%= "#{char.image_url}" %> alt="">
+          <div class="image_wrapper"><img class="imagesizer"src= <%= "#{char.image_url}" %> alt=""></div>
           <p><%= "#{char.name}" %></p>
         </div>
-        </div>
+      </div>
     <% end %>
   </div>
 </div>
 
- <%= form_for @game_question do |f| %>
-   <%= f.collection_select :question_id, @question_set, :id, :question %>
-   <%= f.hidden_field :game_id, value: @game.id %>
-   <%= f.submit "submit question" %>
-  <% end %>
+
+<div class="question_form">
+  <h1>Ask a Question or Guess Who?</h1>
+  <%= form_for @game_question do |f| %>
+    <%= f.collection_select :question_id, @question_set, :id, :question %>
+    <%= f.hidden_field :game_id, value: @game.id %>
+    <%= f.submit "submit question" %>
+   <% end %>
 
 
-<%= form_for @game, {method: "patch"} do |f| %>
-<%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>
-<%= f.submit "guess who" %>
-<% end %>
+ <%= form_for @game, {method: "patch"} do |f| %>
+ <%= f.collection_select :picked_character, @game.characters, :id, :name, {prompt: "Select one"} %>
+ <%= f.submit "guess who" %>
+ <% end %>
+
+</div>

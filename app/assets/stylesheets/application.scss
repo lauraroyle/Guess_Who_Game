@@ -19,6 +19,79 @@ nav {
   }
 }
 
+.page_layout {
+  max-width: 1600px;
+  margin: 1em auto;
+}
+
+.cards_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .my_card {
+    width: 20%;
+    min-width: 250px;
+    margin-bottom: 1em;
+
+    .char-card {
+      width: 90%;
+      margin: 0 auto;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #fff;
+      transition: 0.2s;
+
+      &:hover {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.3);
+      }
+
+      .image_wrapper {
+        height: 270px;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          height: 140%;
+          min-width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      p {
+        margin: 0;
+        padding: 0 1em;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+  .question_form {
+      text-align: center;
+  }
+
+  .new_player {
+      text-align: center;
+  }
+
+  .edit_form {
+      text-align: center;
+  }
+
+
+
 // @media (min-width: 992px){
 //   .screen {
 //     width: auto;
