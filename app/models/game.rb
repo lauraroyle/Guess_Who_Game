@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   has_many :game_questions
   has_many :questions, through: :game_questions
 
-  #method that aliases "Players" as "Characters" for easier reference.
+  #method that aliases "Players" as "Characters" for easier reference. We can call Game.characters to get access to all the characters in that game.
   def characters
     players #same as saying self.players
   end
@@ -18,9 +18,9 @@ class Game < ApplicationRecord
     game_characters = all_characters.sample(25)
   end
 
+  # we're using this in the games controller as a game attribute for the #update action. Not entirely sure I understand this.
   def picked_character
   end
-
 
 
 end
