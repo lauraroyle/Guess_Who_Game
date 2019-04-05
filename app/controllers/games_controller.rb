@@ -51,26 +51,24 @@ class GamesController < ApplicationController
       # checks characteristic id against the guess who character and give true or false - working
       guess_who_has_characteristic = @guess_who.characteristic_ids.include?(question_characteristic)
 
-
+      # filters game.characters to give updated_characters array - working
       if guess_who_has_characteristic
-        updated_characters = @game.characters.filter { |character| character.characteristic_ids.include?(question_characteristic) }
+        @updated_characters = @game.characters.filter { |character| character.characteristic_ids.include?(question_characteristic) }
       else
-        updated_characters = @game.characters.filter { |character| character.characteristic_ids.exclude?(question_characteristic) }
+        @updated_characters = @game.characters.filter { |character| character.characteristic_ids.exclude?(question_characteristic) }
       end
 
-      # contains the 25 characters in the game
+      # array contains the 25 characters in the game - working
       game_character_records = GameCharacter.where(game_id: @game.id)
-
-      #iterate over both arrays and compare the player_ids. If there is a match, destroy
+      #iterate over both arrays and compare the player_ids. If there is a match, destroy.
       game_character_records.all.each do |gc|
-        updated_characters.each do |character|
+        @updated_characters.each do |character|
           if gc.player_id == character.id
             gc.destroy
-            byebug
+            # byebug
           end
         end
       end
-
     end
   end
 
