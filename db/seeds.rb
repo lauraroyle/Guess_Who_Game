@@ -155,12 +155,12 @@ questions = [
 ]
 
 Question.create(questions)
-@game = Game.create(player_id: Player.first.id)
-@game_characters = Game.set_up_game_characters(@game.player_id)
-# pick one out of the 25 characters to be the guess who character
-@guess_who = @game_characters.sample
-@game.update(guess_who: @guess_who.id)
-# set up associations in GameCharacters table
-@game_characters.each do |gc|
-  GameCharacter.create(game: @game, player_id: gc.id)
-end
+# # @game = Game.create(player_id: Player.first.id)
+# # @game_characters = Game.set_up_game_characters(@game.player_id)
+# # # pick one out of the 25 characters to be the guess who character
+# # @guess_who = @game_characters.sample
+# # @game.update(guess_who: @guess_who.id)
+# # # set up associations in GameCharacters table
+# # @game_characters.each do |gc|
+# #   GameCharacter.create(game: @game, player_id: gc.id)
+# end
