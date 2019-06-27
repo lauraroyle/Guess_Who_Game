@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception --! do we need this?
-  helper_method :current_user, :logged_in?
+  protect_from_forgery with: :exception
+
+  #this helper method makes current_player and logged_in available to the view
+  helper_method :current_player, :logged_in?
 
   #Welcome
     def welcome
