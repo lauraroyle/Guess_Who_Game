@@ -14,8 +14,10 @@ class GamesController < ApplicationController
   def create
     @player = current_player
     @game = Game.new(score: 0, round: 1, player: @player)
+
     if @game.valid? #what are we valiadating against?
       @game.save
+
       # chooses 25 random characters - working
       @game_characters = Game.set_up_game_characters(@game.player_id)
       # chooses 1 of the 25 to be the guess who - working
@@ -46,28 +48,6 @@ class GamesController < ApplicationController
       # take the question a user asks out of the question set.
       @question_set = Question.all - @game.questions
 
-      # finds the characteristic_id from the last question asked by the user - working
-      question_characteristic = @game.questions.map {|q| q.characteristic_id}.last
-      # checks characteristic id against the guess who character and give true or false - working
-      guess_who_has_characteristic = @guess_who.characteristic_ids.include?(question_characteristic)
-
-      # filters game.characters to give updated_characters array - working
-      if guess_who_has_characteristic
-        @updated_characters = @game.characters.filter { |character| character.characteristic_ids.exclude?(question_characteristic) }
-      else
-        @updated_characters = @game.characters.filter { |character| character.characteristic_ids.include?(question_characteristic) }
-      end
-    
-      # array contains the 25 characters in the game - working
-      game_character_records = GameCharacter.where(game_id: @game.id)
-      #iterate over both arrays and compare the player_ids. If there is a match, destroy.
-      game_character_records.all.each do |gc|
-        @updated_characters.each do |character|
-          if gc.player_id == character.id
-            gc.destroy
-          end
-        end
-      end
     end
   end
 
