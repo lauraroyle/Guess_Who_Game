@@ -6,6 +6,11 @@ class GameQuestionsController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:id])
+    respond_to do |f|
+      f.html {redirect_to @game}
+      f.json {render json: @game}
+    end
   end
 
   def edit

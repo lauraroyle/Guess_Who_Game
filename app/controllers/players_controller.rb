@@ -3,15 +3,27 @@ class PlayersController < ApplicationController
 
   def index
     @players = Player.all
+  
+    respond_to do |f|
+      f.html {render :index}
+      f.json {render json: @players}
+    end
+
   end
 
-  # the player show page will show his profile data and statistitics
+  # the player show page will show profile data and statistitics
   def show
-
+    @player = Player.find(params[:id])
+ 
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @player}
+    end
   end
 
   # the edit page will let the player edit their name, username, and their characteristics
-  def edit; end
+  def edit
+  end
 
   # new will let a user create a new player.
   def new
@@ -59,7 +71,12 @@ class PlayersController < ApplicationController
       end
       session[:player_id] = @player.id
 
-      redirect_to @player
+      
+      respond_to do |f|
+        f.html {redirect_to @player}
+        f.json {render json: @player}
+      end
+
     else
       flash[:errors] = ['Something went wrong, try again']
       render :new
@@ -73,20 +90,25 @@ class PlayersController < ApplicationController
       password: player_params[:password],
       image: player_params[:image]
     )
-    characteristics = [
-      params[:player][:gender],
-      params[:player][:hair_colour],
-      params[:player][:eye_colour],
-      params[:player][:facial_hair],
-      params[:player][:alive],
-      params[:player][:glasses],
-      params[:player][:wears_hat],
-      params[:player][:occupation]
-    ]
-    characteristics.each do |c|
-      PlayerCharacteristic.update(player_id: @player.id, characteristic_id: c)
-    end
-      redirect_to @player
+      characteristics = [
+        params[:player][:gender],
+        params[:player][:hair_colour],
+        params[:player][:eye_colour],
+        params[:player][:facial_hair],
+        params[:player][:alive],
+        params[:player][:glasses],
+        params[:player][:wears_hat],
+        params[:player][:occupation]
+      ]
+      characteristics.each do |c|
+        PlayerCharacteristic.update(player_id: @player.id, characteristic_id: c)
+      end
+
+      respond_to do |f|
+        f.html {redirect_to @player}
+        f.json {render json: @player}
+      end
+
     else
       render :edit
     end
