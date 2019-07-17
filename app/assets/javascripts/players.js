@@ -18,10 +18,9 @@ function getPlayers() {
     }).done(function (data) {
 
         console.log("the data is: ", data)
-        debugger
         let myPlayer = new Player(data[0])
         let myPlayerHTML = myPlayer.postHTML()
-        document.getElementById('players-index').innerHTML += myPlayerHTML
+        document.getElementById('get-players').innerHTML = myPlayerHTML
     })
 }
 
@@ -35,10 +34,17 @@ class Player {
 }
 
 Player.prototype.postHTML = function () {
+
+    let playerCharacteristics = this.characteristics.map(char => {
+        return(`
+        <p><{char.characteristic_name}/p>
+        `)
+    }).join('')
+
     return (`
     <div>
         <h3>${this.name}</h3>
-        <h3>${this.characteristics}</h3>
+        <p>${playerCharacteristics}</p>
     </div>
     `)
 }

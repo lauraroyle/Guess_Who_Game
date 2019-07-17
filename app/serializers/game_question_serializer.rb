@@ -1,4 +1,4 @@
-class GameQuestionsSerializer < ActiveModel::Serializer
+class GameQuestionSerializer < ActiveModel::Serializer
   attributes :id
 
   belongs_to :game

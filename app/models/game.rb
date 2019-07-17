@@ -1,9 +1,7 @@
 class Game < ApplicationRecord
-  has_many :game_characters
-
-  has_many :players, through: :game_characters
   belongs_to :player
-
+  has_many :game_characters
+  # has_many :players, through: :game_characters - do we need this?
   has_many :game_questions
   has_many :questions, through: :game_questions
 
