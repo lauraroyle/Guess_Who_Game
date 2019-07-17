@@ -17,6 +17,10 @@ class Player < ApplicationRecord
   #   top_players = Player.all.sort_by{ |p| p.top_score}.reverse
   # end
 
+  # def next
+  #   Post.where("id > ?", id).first
+  # end
+
   def rename_img
 
   end
