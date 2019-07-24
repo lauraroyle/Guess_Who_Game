@@ -69,7 +69,11 @@ Player.prototype.formatShow = function() {
         <img src="${this.image}" alt="player_headshot" width="550" height="600">
         <h4>Top Score: ${this.top_score}</h4>  
         <h4>Characteristics: </h4>
-        <li>${this.characteristics}</li>
+        <ul> ${this.characteristics.map(function (char) {
+            return '<li>' + char + '</li>';
+        }).join('')} </ul>
+    
+        </ul>
         <button class="next-post"> Next </button>
         `
         return playerHtml
