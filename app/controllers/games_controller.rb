@@ -28,13 +28,23 @@ class GamesController < ApplicationController
       @game_characters.each do |gc|
         GameCharacter.create(game: @game, player_id: gc.id)
       end
-      redirect_to @game
+      
+      respond_to do |f|
+        f.html {redirect_to @game}
+        f.json {render json: @game}
+      end
+
     else
       render :new
     end
   end
 
   def show
+    # Project requirements: add in AM Serializer 
+    @game = Game.find(params[:id])
+    
+   
+
     # make an association between game and a new question - working
     @game_question = GameQuestion.new(game: @game)
     # get the instance of the guess who player - working
@@ -49,6 +59,13 @@ class GamesController < ApplicationController
       @question_set = Question.all - @game.questions
 
     end
+
+     respond_to do |f|
+      f.html
+      f.json {render json: @game}
+    end
+
+    # redirect_to: @game
   end
 
   def edit

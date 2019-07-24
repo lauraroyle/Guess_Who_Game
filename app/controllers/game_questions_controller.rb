@@ -6,6 +6,11 @@ class GameQuestionsController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:id])
+    respond_to do |f|
+      f.html {redirect_to @game_question}
+      f.json {render json: @game_question}
+    end
   end
 
   def edit
@@ -32,7 +37,12 @@ class GameQuestionsController < ApplicationController
 
     game.players = @updated_characters
     game.save
-    redirect_to @game_question.game
+    # redirect_to @game_question.game
+
+    respond_to do |f|
+      f.html {redirect_to @game_question.game}
+      f.json {render json: @game_question.game}
+    end
 
   end
 

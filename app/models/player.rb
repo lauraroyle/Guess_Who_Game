@@ -13,9 +13,13 @@ class Player < ApplicationRecord
   validate :image_size_validation
   has_secure_password
  
-  def self.top_players
-    top_players = Player.all.sort_by{ |p| p.top_score}.reverse
-  end
+  # def self.top_players
+  #   top_players = Player.all.sort_by{ |p| p.top_score}.reverse
+  # end
+
+  # def next
+  #   Post.where("id > ?", id).first
+  # end
 
   def rename_img
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # get '/you_lose', to: 'games#you_lose', as: 'you_lose'    Do I need these routes? I just want the views for these pages to be rendered at the end of a game
   get '/rules', to: 'games#rules', as: 'rules'
   get '/start_game', to: 'games#create'
+  # get '/players/:id/next', to: 'players/next'
 
 
   # user account management
