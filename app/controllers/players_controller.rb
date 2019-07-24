@@ -72,11 +72,11 @@ class PlayersController < ApplicationController
       end
       session[:player_id] = @player.id
 
-      
-      respond_to do |f|
-        f.html {redirect_to @player}
-        f.json {render json: @player}
-      end
+      render json: @player
+      # respond_to do |f|
+      #   f.html {redirect_to @player}
+      #   f.json {render json: @player}
+      # end
 
     else
       flash[:errors] = ['Something went wrong, try again']
