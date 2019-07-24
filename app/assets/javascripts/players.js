@@ -29,20 +29,6 @@ const bindClickHandlers = () => {
         
     // })
 
-    $('#new_player').on('submit', function(e) {
-        e.preventDefault()
-        const values = $(this).serialize()
-
-        $.post('/signup', values).done(function(data) {
-            $('#app-container').html('')
-
-            const newPlayer = new Player(data)
-            const newHtmlToAdd = newPlayer.formatShow()
-
-            $('#app-container').html(newHtmlToAdd)
-        })
-    })
-
 }
 
 const getPlayers = () => {
@@ -63,6 +49,7 @@ function Player(player) {
     this.id = player.id
     this.name = player.name
     this.image = player.image.url
+    this.top_score = player.top_score
     this.characteristics = player.characteristics.map(char => char.characteristic_name)
 }
 
@@ -79,7 +66,8 @@ Player.prototype.formatIndex = function() {
 Player.prototype.formatShow = function() {
     let playerHtml = `
         <h3>${this.name}</h3> 
-        <img src="${this.image}" alt="player_headshot" width="550" height="600">  
+        <img src="${this.image}" alt="player_headshot" width="550" height="600">
+        <h4>Top Score: ${this.top_score}</h4>  
         <h4>Characteristics: </h4>
         <ul> ${this.characteristics.map(function (char) {
             return '<li>' + char + '</li>';
