@@ -1,13 +1,13 @@
 class Game < ApplicationRecord
   belongs_to :player
   has_many :game_characters
-  # has_many :players, through: :game_characters - do we need this?
+  has_many :players, through: :game_characters
   has_many :game_questions
   has_many :questions, through: :game_questions
 
   #method that aliases "Players" as "Characters" for easier reference. We can call Game.characters to get access to all the characters in that game.
   def characters
-    players #same as saying self.players
+    self.players #same as saying self.players
   end
 
   # this method will choose 25 characters for a 5x5 board. not including self.

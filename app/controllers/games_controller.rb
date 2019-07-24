@@ -42,10 +42,8 @@ class GamesController < ApplicationController
   def show
     # Project requirements: add in AM Serializer 
     @game = Game.find(params[:id])
-    respond_to do |f|
-      f.html {redirect_to @game}
-      f.json {render json: @game}
-    end
+    
+   
 
     # make an association between game and a new question - working
     @game_question = GameQuestion.new(game: @game)
@@ -61,6 +59,13 @@ class GamesController < ApplicationController
       @question_set = Question.all - @game.questions
 
     end
+
+     respond_to do |f|
+      f.html
+      f.json {render json: @game}
+    end
+
+    # redirect_to: @game
   end
 
   def edit

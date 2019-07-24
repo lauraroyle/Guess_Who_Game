@@ -6,7 +6,7 @@ const bindClickHandlers = () => {
     $('.all_players').on('click', (e) => {
         e.preventDefault()
         // this is being appended to the URL so it updates for users
-        // history.pushState(null, null, "players")
+        history.pushState(null, null, "players")
         getPlayers()
     })
 
@@ -50,13 +50,14 @@ function Player(player) {
     this.name = player.name
     this.image = player.image.url
     this.top_score = player.top_score
-    this.characteristics = player.characteristics.characteristic_name
+    this.characteristics = player.characteristics.map(char => char.characteristic_name)
 }
 
 Player.prototype.formatIndex = function() {
     let playersHtml = `
-        <a href="/players/${this.id}" data-id="${this.id}" class="show_link"> <h2>${this.id}</h2>
-        <h3>${this.name}</h3></a>
+        <a href="/players/${this.id}" data-id="${this.id}" class="show_link"> 
+        <h2>${this.id}. ${this.name}</h2>
+        <img src="${this.image}" alt="player_headshot" width="250" height="300">
         
     `
     return playersHtml
@@ -67,7 +68,8 @@ Player.prototype.formatShow = function() {
         <h3>${this.name}</h3> 
         <img src="${this.image}" alt="player_headshot" width="550" height="600">
         <h4>Top Score: ${this.top_score}</h4>  
-        <h4>Characteristics: ${this.characteristics}</h4>
+        <h4>Characteristics: </h4>
+        <li>${this.characteristics}</li>
         <button class="next-post"> Next </button>
         `
         return playerHtml
