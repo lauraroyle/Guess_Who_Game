@@ -86,7 +86,8 @@ Player.prototype.formatShow = function() {
         }).join('')} </ul>
     
         </ul>
-        <button class="next-post"> Next </button>
+        <button class="next-player"> Next </button>
+        <button class="start-game"> Start Game </button>
         `
         return playerHtml
     
